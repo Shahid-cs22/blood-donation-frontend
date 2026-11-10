@@ -15,17 +15,14 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFE8E8;
-}
-.dark ::-webkit-scrollbar-track {
-  background: #1f1313;
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
   background: #BB2B29;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #530404;
+  background: #991b1b;
 }
 
 /* Floating animation for blood cells & decorative badges */

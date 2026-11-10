@@ -42,18 +42,18 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="min-h-screen py-16 px-4 sm:px-6 flex items-center justify-center bg-gradient-to-b from-[#FFE8E8]/40 to-transparent dark:from-brand-darkBg">
-      <div className="max-w-md w-full bg-white dark:bg-brand-darkCard rounded-3xl p-8 border border-brand-light dark:border-brand-darkBorder shadow-2xl space-y-6 text-center">
+    <div className="min-h-screen py-16 px-4 sm:px-6 flex items-center justify-center bg-slate-50">
+      <div className="max-w-md w-full bg-white rounded-2xl p-8 sm:p-10 border border-slate-200 shadow-xl shadow-slate-100 space-y-6 text-center">
         
-        <div className="w-16 h-16 rounded-3xl bg-brand-light dark:bg-brand-red/20 text-brand-red flex items-center justify-center mx-auto shadow-sm">
+        <div className="w-16 h-16 rounded-2xl bg-red-50 text-brand-red flex items-center justify-center mx-auto shadow-sm border border-red-100">
           <KeyRound className="w-8 h-8" />
         </div>
 
         <div>
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white">
+          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
             Set New Password
           </h2>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-sm text-slate-500 mt-1">
             Enter the 6-digit OTP code sent to your email and your new password.
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function ResetPassword() {
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           {!location.state?.email && (
             <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
                 Email Address
               </label>
               <input
@@ -69,13 +69,14 @@ export default function ResetPassword() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+                placeholder="name@example.com"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 outline-none transition-colors"
               />
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
               6-Digit Reset Code
             </label>
             <input
@@ -85,12 +86,12 @@ export default function ResetPassword() {
               placeholder="••••••"
               value={otp}
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-              className="w-full px-4 py-2.5 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-center text-xl font-bold tracking-widest focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 text-center text-xl font-bold tracking-widest focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 outline-none transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
               New Password
             </label>
             <div className="relative">
@@ -101,13 +102,13 @@ export default function ResetPassword() {
                 placeholder="At least 6 characters"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="w-full pl-11 pr-4 py-2.5 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+                className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 outline-none transition-colors"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
               Confirm New Password
             </label>
             <div className="relative">
@@ -118,7 +119,7 @@ export default function ResetPassword() {
                 placeholder="Re-enter new password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full pl-11 pr-4 py-2.5 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+                className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 outline-none transition-colors"
               />
             </div>
           </div>
@@ -126,7 +127,7 @@ export default function ResetPassword() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark shadow-md shadow-brand-red/25 flex items-center justify-center gap-2 disabled:opacity-50 transition-all mt-4"
+            className="w-full py-3 rounded-xl bg-brand-red hover:bg-[#a62422] text-white text-sm font-semibold shadow-md shadow-brand-red/20 flex items-center justify-center gap-2 disabled:opacity-50 transition-all mt-4"
           >
             <span>{loading ? 'Updating Password...' : 'Reset Password'}</span>
             <ArrowRight className="w-4 h-4" />
@@ -136,7 +137,7 @@ export default function ResetPassword() {
         <div className="pt-2 text-center">
           <Link
             to="/login"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-brand-red transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-brand-red transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Login</span>
@@ -147,4 +148,3 @@ export default function ResetPassword() {
     </div>
   );
 }
-

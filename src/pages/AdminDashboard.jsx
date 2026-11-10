@@ -165,15 +165,15 @@ export default function AdminDashboard() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-brand-dark via-brand-red to-brand-red rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="bg-gradient-to-r from-slate-900 to-brand-red rounded-2xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <span className="text-xs font-black uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">
+          <span className="text-xs font-bold uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">
             Security Level: Administrator
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black mt-2">
+          <h1 className="text-2xl sm:text-3xl font-extrabold mt-2">
             Platform Admin Console
           </h1>
-          <p className="text-xs sm:text-sm text-white/90">
+          <p className="text-xs sm:text-sm text-slate-200">
             Real-time management of users, donors, emergency requests, camps, and CSV report export.
           </p>
         </div>
@@ -183,7 +183,7 @@ export default function AdminDashboard() {
           <a
             href={adminService.exportCsvUrl('donors')}
             download="blood_donors.csv"
-            className="px-2.5 sm:px-4 py-2.5 rounded-full bg-white text-brand-dark hover:bg-brand-light text-[11px] sm:text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 text-center"
+            className="px-2.5 sm:px-4 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 text-[11px] sm:text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
           >
             <Download className="w-3.5 h-3.5 text-brand-red shrink-0" />
             <span className="hidden sm:inline">Donors CSV</span>
@@ -192,7 +192,7 @@ export default function AdminDashboard() {
           <a
             href={adminService.exportCsvUrl('requests')}
             download="blood_requests.csv"
-            className="px-2.5 sm:px-4 py-2.5 rounded-full bg-white text-brand-dark hover:bg-brand-light text-[11px] sm:text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 text-center"
+            className="px-2.5 sm:px-4 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 text-[11px] sm:text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
           >
             <Download className="w-3.5 h-3.5 text-brand-red shrink-0" />
             <span className="hidden sm:inline">Requests CSV</span>
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
           <a
             href={adminService.exportCsvUrl('donations')}
             download="donations.csv"
-            className="px-2.5 sm:px-4 py-2.5 rounded-full bg-white text-brand-dark hover:bg-brand-light text-[11px] sm:text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 text-center"
+            className="px-2.5 sm:px-4 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 text-[11px] sm:text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
           >
             <Download className="w-3.5 h-3.5 text-brand-red shrink-0" />
             <span className="hidden sm:inline">Donations CSV</span>
@@ -219,10 +219,10 @@ export default function AdminDashboard() {
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
-              className={`px-5 py-3 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 shrink-0 ${
+              className={`px-5 py-3 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shrink-0 ${
                 active
-                  ? 'bg-brand-red text-white shadow-md shadow-brand-red/25'
-                  : 'bg-white dark:bg-brand-darkCard text-slate-700 dark:text-slate-200 border border-brand-light dark:border-brand-darkBorder hover:bg-brand-light'
+                  ? 'bg-brand-red text-white shadow-xs'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -251,8 +251,8 @@ export default function AdminDashboard() {
           </div>
 
           {/* Blood Group Distribution Grid */}
-          <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-sm">
-            <h3 className="text-base font-black text-slate-900 dark:text-white mb-4">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
+            <h3 className="text-base font-bold text-slate-900 mb-4">
               Registered Donors by Blood Group
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
@@ -262,12 +262,12 @@ export default function AdminDashboard() {
                 return (
                   <div
                     key={bg}
-                    className="p-4 rounded-2xl bg-brand-light/40 dark:bg-brand-darkBorder/30 text-center border border-brand-soft/20"
+                    className="p-4 rounded-xl bg-slate-50 text-center border border-slate-200"
                   >
-                    <span className="text-2xl font-black text-brand-dark dark:text-brand-soft block">
+                    <span className="text-2xl font-black text-brand-red block">
                       {bg}
                     </span>
-                    <span className="text-xs font-bold text-slate-500 mt-1 block">
+                    <span className="text-xs font-semibold text-slate-500 mt-1 block">
                       {count} {count === 1 ? 'Donor' : 'Donors'}
                     </span>
                   </div>
@@ -281,16 +281,16 @@ export default function AdminDashboard() {
 
       {/* 2. USER MANAGEMENT */}
       {tab === 'users' && (
-        <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-4 animate-in fade-in">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-            <h3 className="text-lg font-black text-slate-900 dark:text-white">
+        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4 animate-in fade-in">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <h3 className="text-lg font-bold text-slate-900">
               Registered Users ({userList.length})
             </h3>
           </div>
 
           <div className="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0">
             <table className="w-full text-xs text-left min-w-[650px]">
-              <thead className="bg-slate-50 dark:bg-brand-darkBorder/30 text-slate-400 uppercase font-bold text-[10px]">
+              <thead className="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] border-b border-slate-100">
                 <tr>
                   <th className="p-3">Name</th>
                   <th className="p-3">Email</th>
@@ -301,10 +301,10 @@ export default function AdminDashboard() {
                   <th className="p-3 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              <tbody className="divide-y divide-slate-100">
                 {userList.map((u) => (
-                  <tr key={u._id} className="hover:bg-slate-50/50 dark:hover:bg-brand-darkBorder/20">
-                    <td className="p-3 font-bold text-slate-800 dark:text-white">{u.name}</td>
+                  <tr key={u._id} className="hover:bg-slate-50">
+                    <td className="p-3 font-bold text-slate-900">{u.name}</td>
                     <td className="p-3 text-slate-500">{u.email}</td>
                     <td className="p-3 text-slate-500">{u.mobileNumber}</td>
                     <td className="p-3">
@@ -316,32 +316,32 @@ export default function AdminDashboard() {
                     </td>
                     <td className="p-3">
                       {u.isEmailVerified ? (
-                        <span className="text-emerald-600 font-bold">Yes</span>
+                        <span className="text-emerald-700 font-bold">Yes</span>
                       ) : (
-                        <span className="text-rose-500 font-bold">No</span>
+                        <span className="text-rose-600 font-bold">No</span>
                       )}
                     </td>
                     <td className="p-3">
                       {u.isSuspended ? (
-                        <span className="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Suspended</span>
+                        <span className="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 font-bold text-[10px]">Suspended</span>
                       ) : (
-                        <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]">Active</span>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold text-[10px]">Active</span>
                       )}
                     </td>
                     <td className="p-3 text-right space-x-2">
                       <button
                         onClick={() => handleToggleSuspend(u._id)}
-                        className={`px-3 py-1 rounded-full text-[11px] font-bold ${
+                        className={`px-3 py-1 rounded-lg text-[11px] font-bold ${
                           u.isSuspended
-                            ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200'
-                            : 'bg-rose-100 text-rose-700 hover:bg-rose-200'
+                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100'
+                            : 'bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100'
                         }`}
                       >
                         {u.isSuspended ? 'Reactivate' : 'Suspend'}
                       </button>
                       <button
                         onClick={() => handleToggleRole(u._id, u.role)}
-                        className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 text-[11px] font-bold"
+                        className="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-[11px] font-bold border border-slate-200"
                       >
                         {u.role === 'admin' ? 'Make User' : 'Make Admin'}
                       </button>
@@ -356,16 +356,16 @@ export default function AdminDashboard() {
 
       {/* 3. DONOR RECORDS */}
       {tab === 'donors' && (
-        <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-4 animate-in fade-in">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-            <h3 className="text-lg font-black text-slate-900 dark:text-white">
+        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4 animate-in fade-in">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <h3 className="text-lg font-bold text-slate-900">
               Donor Directory (Admin Unmasked View - {donorList.length})
             </h3>
           </div>
 
           <div className="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0">
             <table className="w-full text-xs text-left min-w-[650px]">
-              <thead className="bg-slate-50 dark:bg-brand-darkBorder/30 text-slate-400 uppercase font-bold text-[10px]">
+              <thead className="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] border-b border-slate-100">
                 <tr>
                   <th className="p-3">Donor Name</th>
                   <th className="p-3">Blood Group</th>
@@ -375,21 +375,21 @@ export default function AdminDashboard() {
                   <th className="p-3">Available</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              <tbody className="divide-y divide-slate-100">
                 {donorList.map((d) => (
-                  <tr key={d._id} className="hover:bg-slate-50/50 dark:hover:bg-brand-darkBorder/20">
-                    <td className="p-3 font-bold text-slate-800 dark:text-white">{d.name}</td>
+                  <tr key={d._id} className="hover:bg-slate-50">
+                    <td className="p-3 font-bold text-slate-900">{d.name}</td>
                     <td className="p-3">
-                      <span className="px-2 py-0.5 rounded-md bg-brand-light text-brand-red font-black">
+                      <span className="px-2 py-0.5 rounded-md bg-red-50 text-brand-red font-bold border border-red-200">
                         {d.bloodGroup}
                       </span>
                     </td>
-                    <td className="p-3 font-mono text-slate-600 dark:text-slate-300">{d.mobileNumber}</td>
+                    <td className="p-3 font-mono text-slate-700">{d.mobileNumber}</td>
                     <td className="p-3 text-slate-500">{d.city}, {d.district}</td>
                     <td className="p-3 font-bold">{d.totalDonations}</td>
                     <td className="p-3">
                       <span className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
-                        d.isAvailable ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'
+                        d.isAvailable ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'
                       }`}>
                         {d.isAvailable ? 'Yes' : 'No'}
                       </span>
@@ -404,16 +404,16 @@ export default function AdminDashboard() {
 
       {/* 4. BLOOD REQUESTS */}
       {tab === 'requests' && (
-        <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-4 animate-in fade-in">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-            <h3 className="text-lg font-black text-slate-900 dark:text-white">
+        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4 animate-in fade-in">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <h3 className="text-lg font-bold text-slate-900">
               Manage Blood Requests ({requestList.length})
             </h3>
           </div>
 
           <div className="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0">
             <table className="w-full text-xs text-left min-w-[650px]">
-              <thead className="bg-slate-50 dark:bg-brand-darkBorder/30 text-slate-400 uppercase font-bold text-[10px]">
+              <thead className="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] border-b border-slate-100">
                 <tr>
                   <th className="p-3">Request ID</th>
                   <th className="p-3">Patient</th>
@@ -424,41 +424,41 @@ export default function AdminDashboard() {
                   <th className="p-3 text-right">Moderation</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              <tbody className="divide-y divide-slate-100">
                 {requestList.map((r) => (
-                  <tr key={r._id} className="hover:bg-slate-50/50 dark:hover:bg-brand-darkBorder/20">
-                    <td className="p-3 font-mono font-bold">{r.requestId}</td>
-                    <td className="p-3 font-bold text-slate-800 dark:text-white">{r.patientName}</td>
+                  <tr key={r._id} className="hover:bg-slate-50">
+                    <td className="p-3 font-mono font-bold text-slate-700">{r.requestId}</td>
+                    <td className="p-3 font-bold text-slate-900">{r.patientName}</td>
                     <td className="p-3">
-                      <span className="px-2 py-0.5 rounded bg-brand-light text-brand-red font-black">
+                      <span className="px-2 py-0.5 rounded bg-red-50 text-brand-red font-bold border border-red-200">
                         {r.bloodGroup} ({r.unitsRequired}U)
                       </span>
                     </td>
                     <td className="p-3 text-slate-500">{r.hospitalName}, {r.city}</td>
                     <td className="p-3">
                       <span className={`px-2 py-0.5 rounded font-bold uppercase text-[10px] ${
-                        r.priority === 'Critical' ? 'bg-rose-600 text-white' : 'bg-rose-100 text-brand-red'
+                        r.priority === 'Critical' ? 'bg-red-600 text-white' : 'bg-red-50 text-brand-red border border-red-200'
                       }`}>
                         {r.priority}
                       </span>
                     </td>
-                    <td className="p-3 font-bold text-slate-700 dark:text-slate-300">{r.status}</td>
+                    <td className="p-3 font-bold text-slate-700">{r.status}</td>
                     <td className="p-3 text-right space-x-1.5">
                       <button
                         onClick={() => handleRequestStatus(r._id, 'Approved')}
-                        className="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 font-bold text-[11px] hover:bg-emerald-200"
+                        className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold text-[11px] hover:bg-emerald-100"
                       >
                         Approve
                       </button>
                       <button
                         onClick={() => handleRequestStatus(r._id, 'Fulfilled')}
-                        className="px-2.5 py-1 rounded bg-blue-100 text-blue-800 font-bold text-[11px] hover:bg-blue-200"
+                        className="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 border border-blue-200 font-bold text-[11px] hover:bg-blue-100"
                       >
                         Fulfilled
                       </button>
                       <button
                         onClick={() => handleRequestStatus(r._id, 'Rejected')}
-                        className="px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-bold text-[11px] hover:bg-slate-200"
+                        className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 font-bold text-[11px] hover:bg-slate-200"
                       >
                         Reject
                       </button>
@@ -473,17 +473,17 @@ export default function AdminDashboard() {
 
       {/* 5. DONATION CAMPS */}
       {tab === 'camps' && (
-        <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-4 animate-in fade-in">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4 animate-in fade-in">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-100">
             <div>
-              <h3 className="text-lg font-black text-slate-900 dark:text-white">
+              <h3 className="text-lg font-bold text-slate-900">
                 Manage Donation Camps ({campList.length})
               </h3>
               <p className="text-xs text-slate-500">Add, view, and organize life-saver community camps.</p>
             </div>
             <button
               onClick={() => setShowCampModal(true)}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark flex items-center justify-center gap-1.5"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 flex items-center justify-center gap-1.5 shadow-xs"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Create New Camp</span>
@@ -494,19 +494,19 @@ export default function AdminDashboard() {
             {campList.map((c) => (
               <div
                 key={c._id}
-                className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-brand-darkBg space-y-2"
+                className="p-5 rounded-xl border border-slate-200 bg-white space-y-2 shadow-xs"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-brand-red">
                     {new Date(c.date).toLocaleDateString()}
                   </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
                     {c.status}
                   </span>
                 </div>
-                <h4 className="font-extrabold text-sm text-slate-900 dark:text-white">{c.campName}</h4>
+                <h4 className="font-bold text-sm text-slate-900">{c.campName}</h4>
                 <p className="text-xs text-slate-500">{c.venue}, {c.city}</p>
-                <p className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                <p className="text-xs font-bold text-slate-700">
                   Registrations: {c.registeredCount} / {c.registrationLimit}
                 </p>
               </div>
@@ -517,121 +517,121 @@ export default function AdminDashboard() {
 
       {/* CREATE CAMP MODAL */}
       {showCampModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white dark:bg-brand-darkCard rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-brand-light dark:border-brand-darkBorder max-h-[90vh] overflow-y-auto">
-            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs animate-in fade-in">
+          <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+            <h3 className="text-xl font-bold text-slate-900 mb-4">
               Add New Blood Donation Camp
             </h3>
             <form onSubmit={handleCreateCamp} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase mb-1">Camp Name *</label>
+                <label className="block text-xs font-bold uppercase mb-1 text-slate-700">Camp Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Red Cross Annual Mega Blood Drive"
                   value={campForm.campName}
                   onChange={(e) => setCampForm({ ...campForm, campName: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-xs outline-none"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase mb-1">Description *</label>
+                <label className="block text-xs font-bold uppercase mb-1 text-slate-700">Description *</label>
                 <textarea
                   required
                   rows={2}
                   placeholder="Details about camp..."
                   value={campForm.description}
                   onChange={(e) => setCampForm({ ...campForm, description: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-xs outline-none"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1">Date *</label>
+                  <label className="block text-xs font-bold uppercase mb-1 text-slate-700">Date *</label>
                   <input
                     type="date"
                     required
                     value={campForm.date}
                     onChange={(e) => setCampForm({ ...campForm, date: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-xs outline-none"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1">City *</label>
+                  <label className="block text-xs font-bold uppercase mb-1 text-slate-700">City *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Chennai"
                     value={campForm.city}
                     onChange={(e) => setCampForm({ ...campForm, city: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-xs outline-none"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1">Venue Name *</label>
+                  <label className="block text-xs font-bold uppercase mb-1 text-slate-700">Venue Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Community Auditorium"
                     value={campForm.venue}
                     onChange={(e) => setCampForm({ ...campForm, venue: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-xs outline-none"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1">Venue Address *</label>
+                  <label className="block text-xs font-bold uppercase mb-1 text-slate-700">Venue Address *</label>
                   <input
                     type="text"
                     required
                     placeholder="Full street address"
                     value={campForm.address}
                     onChange={(e) => setCampForm({ ...campForm, address: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-xs outline-none"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1">Organizer Organization *</label>
+                  <label className="block text-xs font-bold uppercase mb-1 text-slate-700">Organizer Organization *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Rotary Club"
                     value={campForm.organizer}
                     onChange={(e) => setCampForm({ ...campForm, organizer: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-xs outline-none"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase mb-1">Contact Phone *</label>
+                  <label className="block text-xs font-bold uppercase mb-1 text-slate-700">Contact Phone *</label>
                   <input
                     type="text"
                     required
                     placeholder="+91 98401 12345"
                     value={campForm.contactPhone}
                     onChange={(e) => setCampForm({ ...campForm, contactPhone: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-xs outline-none"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                   />
                 </div>
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setShowCampModal(false)}
-                  className="px-4 py-2 rounded-full text-xs font-bold text-slate-500"
+                  className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark"
+                  className="px-6 py-2 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 shadow-xs"
                 >
                   Create Camp
                 </button>
@@ -644,4 +644,3 @@ export default function AdminDashboard() {
     </div>
   );
 }
-

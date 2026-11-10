@@ -68,22 +68,22 @@ export default function DonationCamps() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-brand-dark via-brand-red to-brand-red p-8 sm:p-10 rounded-3xl text-white shadow-xl relative overflow-hidden">
+      <div className="bg-gradient-to-r from-slate-900 to-brand-red p-8 sm:p-10 rounded-2xl text-white shadow-xl relative overflow-hidden">
         <div className="relative z-10 max-w-2xl space-y-2">
-          <span className="text-xs font-black uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">
+          <span className="text-xs font-bold uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">
             Community Drives
           </span>
-          <h1 className="text-2xl sm:text-4xl font-black">
+          <h1 className="text-2xl sm:text-4xl font-extrabold">
             Blood Donation Camps
           </h1>
-          <p className="text-xs sm:text-sm text-white/90">
+          <p className="text-xs sm:text-sm text-slate-200">
             Join local blood donation camps organized with verified hospitals and welfare societies. 15 minutes of your time creates a lifetime of smiles for patients.
           </p>
         </div>
       </div>
 
       {/* Search Filter */}
-      <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-5 border border-brand-light dark:border-brand-darkBorder shadow-sm flex flex-col sm:flex-row items-center gap-3">
+      <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center gap-3">
         <div className="relative flex-1 w-full">
           <MapPin className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
           <input
@@ -91,12 +91,12 @@ export default function DonationCamps() {
             placeholder="Filter camps by city (e.g. Chennai, Bangalore, Mumbai)..."
             value={cityFilter}
             onChange={(e) => setCityFilter(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 rounded-full border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+            className="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
           />
         </div>
         <button
           onClick={handleSearchSubmit}
-          className="w-full sm:w-auto px-8 py-3 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark transition-all"
+          className="w-full sm:w-auto px-7 py-3 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 transition-all shadow-xs"
         >
           Find Camps
         </button>
@@ -106,9 +106,9 @@ export default function DonationCamps() {
       {loading ? (
         <LoadingSkeleton count={6} />
       ) : camps.length === 0 ? (
-        <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-12 text-center border border-brand-light dark:border-brand-darkBorder space-y-2">
+        <div className="bg-white rounded-2xl p-12 text-center border border-slate-200 shadow-xs space-y-2">
           <Calendar className="w-12 h-12 text-slate-400 mx-auto" />
-          <h3 className="text-lg font-black text-slate-800 dark:text-white">
+          <h3 className="text-lg font-bold text-slate-800">
             No Upcoming Camps Found
           </h3>
           <p className="text-xs text-slate-500">
@@ -131,4 +131,3 @@ export default function DonationCamps() {
     </div>
   );
 }
-

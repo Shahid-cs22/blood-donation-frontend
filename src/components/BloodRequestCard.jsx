@@ -6,16 +6,16 @@ export default function BloodRequestCard({ request }) {
   const getPriorityStyle = (priority) => {
     switch (priority) {
       case 'Critical':
-        return 'bg-brand-red text-white animate-pulse shadow-md shadow-brand-red/30';
+        return 'bg-red-600 text-white shadow-xs';
       case 'Urgent':
-        return 'bg-rose-100 text-brand-red dark:bg-brand-red/20 dark:text-brand-soft border border-brand-red/30';
+        return 'bg-red-50 text-red-700 border border-red-200';
       default:
-        return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300';
+        return 'bg-slate-100 text-slate-700 border border-slate-200';
     }
   };
 
   return (
-    <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-5 border border-brand-light dark:border-brand-darkBorder shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+    <div className="bg-white rounded-2xl p-5 border border-slate-200 hover:border-red-300 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
       <div>
         
         {/* Top Header: Hospital & Priority Pill */}
@@ -24,44 +24,44 @@ export default function BloodRequestCard({ request }) {
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
               Emergency Request
             </span>
-            <h4 className="font-extrabold text-base text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-red transition-colors">
+            <h4 className="font-bold text-base text-slate-900 line-clamp-1 group-hover:text-brand-red transition-colors">
               {request.hospitalName}
             </h4>
           </div>
 
-          <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider shrink-0 ${getPriorityStyle(request.priority)}`}>
+          <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider shrink-0 ${getPriorityStyle(request.priority)}`}>
             {request.priority}
           </span>
         </div>
 
         {/* Blood Group & Units */}
-        <div className="my-3 p-3 bg-brand-light/40 dark:bg-brand-darkBorder/30 rounded-2xl flex items-center justify-between border border-brand-soft/20">
+        <div className="my-3 p-3 bg-slate-50 rounded-xl flex items-center justify-between border border-slate-200">
           <div>
-            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block">
+            <span className="text-[11px] font-medium text-slate-500 block">
               Blood Type Needed:
             </span>
             <div className="flex items-center gap-2 mt-0.5">
-              <span className="text-xl font-black text-brand-dark dark:text-brand-soft">
+              <span className="text-xl font-black text-brand-red">
                 {request.bloodGroup}
               </span>
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
+              <span className="text-xs font-semibold text-slate-700">
                 ({request.unitsRequired} {request.unitsRequired > 1 ? 'Units' : 'Unit'})
               </span>
             </div>
           </div>
 
           <div className="text-right">
-            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block">
+            <span className="text-[11px] font-medium text-slate-500 block">
               Patient:
             </span>
-            <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+            <span className="text-xs font-bold text-slate-900">
               {request.patientName}
             </span>
           </div>
         </div>
 
         {/* Location & Time Info */}
-        <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 mb-4">
+        <div className="space-y-1.5 text-xs text-slate-600 mb-4">
           <div className="flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5 text-brand-red shrink-0" />
             <span className="truncate">{request.hospitalLocation}, {request.city}</span>
@@ -73,7 +73,7 @@ export default function BloodRequestCard({ request }) {
         </div>
 
         {/* Emergency Description */}
-        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 italic mb-4">
+        <p className="text-xs text-slate-600 line-clamp-2 italic mb-4 bg-slate-50/60 p-2.5 rounded-xl border border-slate-100">
           "{request.emergencyDescription}"
         </p>
 
@@ -82,7 +82,7 @@ export default function BloodRequestCard({ request }) {
       {/* Action CTA */}
       <Link
         to={`/donors?bloodGroup=${encodeURIComponent(request.bloodGroup)}`}
-        className="w-full py-2.5 px-4 rounded-full text-xs font-bold bg-brand-light text-brand-dark hover:bg-brand-red hover:text-white dark:bg-brand-red/20 dark:text-brand-soft dark:hover:bg-brand-red dark:hover:text-white transition-all flex items-center justify-center gap-2"
+        className="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-red-50 text-brand-red border border-red-200 hover:bg-brand-red hover:text-white transition-all flex items-center justify-center gap-2"
       >
         <span>View Matched Donors</span>
         <ArrowRight className="w-3.5 h-3.5" />
@@ -90,4 +90,3 @@ export default function BloodRequestCard({ request }) {
     </div>
   );
 }
-

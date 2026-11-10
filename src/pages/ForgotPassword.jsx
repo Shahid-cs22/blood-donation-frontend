@@ -31,15 +31,15 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="min-h-screen py-16 px-4 sm:px-6 flex items-center justify-center bg-gradient-to-b from-[#FFE8E8]/40 to-transparent dark:from-brand-darkBg">
-      <div className="max-w-md w-full bg-white dark:bg-brand-darkCard rounded-3xl p-8 border border-brand-light dark:border-brand-darkBorder shadow-2xl space-y-6 text-center">
+    <div className="min-h-screen py-16 px-4 sm:px-6 flex items-center justify-center bg-slate-50">
+      <div className="max-w-md w-full bg-white rounded-2xl p-8 border border-slate-200 shadow-xl space-y-6 text-center">
         
-        <div className="w-16 h-16 rounded-3xl bg-brand-light dark:bg-brand-red/20 text-brand-red flex items-center justify-center mx-auto shadow-sm">
+        <div className="w-16 h-16 rounded-xl bg-red-50 border border-red-200 text-brand-red flex items-center justify-center mx-auto shadow-xs">
           <KeyRound className="w-8 h-8" />
         </div>
 
         <div>
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white">
+          <h2 className="text-2xl font-extrabold text-slate-900">
             Forgot Password
           </h2>
           <p className="text-xs text-slate-500 mt-1">
@@ -49,7 +49,7 @@ export default function ForgotPassword() {
 
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
               Registered Email Address
             </label>
             <div className="relative">
@@ -60,7 +60,7 @@ export default function ForgotPassword() {
                 placeholder="e.g. rahul@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-11 pr-4 py-2.5 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+                className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
               />
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function ForgotPassword() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark shadow-md shadow-brand-red/25 flex items-center justify-center gap-2 disabled:opacity-50 transition-all mt-4"
+            className="w-full py-3.5 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 shadow-xs flex items-center justify-center gap-2 disabled:opacity-50 transition-all mt-4"
           >
             <span>{loading ? 'Sending Code...' : 'Send Reset Code'}</span>
             <ArrowRight className="w-4 h-4" />
@@ -89,4 +89,3 @@ export default function ForgotPassword() {
     </div>
   );
 }
-

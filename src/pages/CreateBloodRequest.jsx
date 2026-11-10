@@ -72,13 +72,13 @@ export default function CreateBloodRequest() {
       </button>
 
       {/* Header */}
-      <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-lg">
+      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-2xl bg-brand-light text-brand-red flex items-center justify-center">
-            <AlertCircle className="w-6 h-6" />
+          <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-200 text-brand-red flex items-center justify-center shadow-xs">
+            <AlertCircle className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black text-brand-dark dark:text-white">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
               Create Blood Request
             </h1>
             <p className="text-xs text-slate-500">
@@ -88,8 +88,8 @@ export default function CreateBloodRequest() {
         </div>
 
         {/* Notice */}
-        <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-2xl flex items-start gap-2.5 text-xs text-amber-800 dark:text-amber-300">
-          <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
+        <div className="mt-4 p-3.5 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-2.5 text-xs text-amber-900">
+          <ShieldAlert className="w-4 h-4 shrink-0 text-amber-700 mt-0.5" />
           <p>
             Please provide genuine, verifiable hospital details. False or fraudulent blood requests will result in immediate account termination.
           </p>
@@ -97,12 +97,12 @@ export default function CreateBloodRequest() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-lg space-y-6">
+      <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
         
         {/* Row 1: Patient Name & Blood Group */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Patient Name *
             </label>
             <input
@@ -111,18 +111,18 @@ export default function CreateBloodRequest() {
               placeholder="e.g. Ramesh Kumar"
               value={formData.patientName}
               onChange={(e) => setFormData({ ...formData, patientName: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Blood Group Required *
             </label>
             <select
               value={formData.bloodGroup}
               onChange={(e) => setFormData({ ...formData, bloodGroup: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm font-bold text-brand-red focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm font-bold text-brand-red focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             >
               {bloodGroups.map((bg) => (
                 <option key={bg} value={bg}>{bg}</option>
@@ -134,7 +134,7 @@ export default function CreateBloodRequest() {
         {/* Row 2: Units Required & Priority */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Units Required *
             </label>
             <input
@@ -144,18 +144,18 @@ export default function CreateBloodRequest() {
               required
               value={formData.unitsRequired}
               onChange={(e) => setFormData({ ...formData, unitsRequired: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Priority Urgency *
             </label>
             <select
               value={formData.priority}
               onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none font-bold"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none font-bold"
             >
               <option value="Normal">Normal</option>
               <option value="Urgent">Urgent</option>
@@ -167,7 +167,7 @@ export default function CreateBloodRequest() {
         {/* Row 3: Hospital Name & Address */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Hospital / Donation Center *
             </label>
             <input
@@ -176,12 +176,12 @@ export default function CreateBloodRequest() {
               placeholder="e.g. Apollo Hospital"
               value={formData.hospitalName}
               onChange={(e) => setFormData({ ...formData, hospitalName: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Hospital Location / Street Address *
             </label>
             <input
@@ -190,7 +190,7 @@ export default function CreateBloodRequest() {
               placeholder="e.g. Greams Road, Thousand Lights"
               value={formData.hospitalLocation}
               onChange={(e) => setFormData({ ...formData, hospitalLocation: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
         </div>
@@ -198,7 +198,7 @@ export default function CreateBloodRequest() {
         {/* Row 4: District & City */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               District *
             </label>
             <input
@@ -207,12 +207,12 @@ export default function CreateBloodRequest() {
               placeholder="e.g. Chennai"
               value={formData.district}
               onChange={(e) => setFormData({ ...formData, district: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               City *
             </label>
             <input
@@ -221,7 +221,7 @@ export default function CreateBloodRequest() {
               placeholder="e.g. Chennai"
               value={formData.city}
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
         </div>
@@ -229,7 +229,7 @@ export default function CreateBloodRequest() {
         {/* Row 5: Required Date & Time */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Required Date *
             </label>
             <input
@@ -237,12 +237,12 @@ export default function CreateBloodRequest() {
               required
               value={formData.requiredDate}
               onChange={(e) => setFormData({ ...formData, requiredDate: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Required Time Window
             </label>
             <input
@@ -250,7 +250,7 @@ export default function CreateBloodRequest() {
               placeholder="e.g. Before 2:00 PM / Immediate"
               value={formData.requiredTime}
               onChange={(e) => setFormData({ ...formData, requiredTime: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
         </div>
@@ -258,7 +258,7 @@ export default function CreateBloodRequest() {
         {/* Row 6: Contact Person & Phone */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Contact Person *
             </label>
             <input
@@ -267,12 +267,12 @@ export default function CreateBloodRequest() {
               placeholder="e.g. Suresh (Father)"
               value={formData.contactPerson}
               onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Contact Phone Number *
             </label>
             <input
@@ -281,14 +281,14 @@ export default function CreateBloodRequest() {
               placeholder="e.g. +91 98400 12345"
               value={formData.contactNumber}
               onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
         </div>
 
         {/* Emergency Description */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
             Emergency Condition / Description *
           </label>
           <textarea
@@ -297,23 +297,23 @@ export default function CreateBloodRequest() {
             placeholder="Describe reason for transfusion (e.g. Scheduled open heart surgery, dengue platelet drop, accident trauma...)"
             value={formData.emergencyDescription}
             onChange={(e) => setFormData({ ...formData, emergencyDescription: e.target.value })}
-            className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
           />
         </div>
 
         {/* Submit */}
-        <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-3 border-t border-slate-100 dark:border-slate-800">
+        <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-3 border-t border-slate-100">
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-center"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 text-center transition-colors"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark shadow-md shadow-brand-red/25 flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 shadow-xs flex items-center justify-center gap-2 disabled:opacity-50 transition-colors"
           >
             <PlusCircle className="w-4 h-4" />
             {loading ? 'Submitting & Matching Donors...' : 'Submit Blood Request'}
@@ -324,4 +324,3 @@ export default function CreateBloodRequest() {
     </div>
   );
 }
-

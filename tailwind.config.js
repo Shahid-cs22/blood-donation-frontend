@@ -4,19 +4,18 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         brand: {
           red: '#BB2B29',
-          dark: '#530404',
-          light: '#FFE8E8',
-          soft: '#ECA0A0',
+          dark: '#1E293B',
+          light: '#FEE2E2',
+          soft: '#FCA5A5',
           white: '#FFFFFF',
-          darkBg: '#120a0a',
-          darkCard: '#1f1313',
-          darkBorder: '#3d1c1c'
+          darkBg: '#F8FAFC',
+          darkCard: '#FFFFFF',
+          darkBorder: '#E2E8F0'
         }
       },
       fontFamily: {

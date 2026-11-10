@@ -77,19 +77,19 @@ export default function FindDonors() {
       
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto">
-        <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-brand-light dark:bg-brand-red/20 px-3 py-1 rounded-full">
+        <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-red-50 border border-red-200 px-3 py-1 rounded-full">
           Verified Donor Directory
         </span>
-        <h1 className="text-3xl sm:text-4xl font-black text-brand-dark dark:text-white mt-2">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">
           Find a Blood Donor Near You
         </h1>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
+        <p className="text-xs sm:text-sm text-slate-500 mt-2">
           Browse verified voluntary blood donors. Contact details are protected to safeguard privacy—submit a verified contact request to connect instantly.
         </p>
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-lg space-y-5">
+      <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-5">
         
         {/* Search Input & Availability Toggle */}
         <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row items-center gap-3">
@@ -100,14 +100,14 @@ export default function FindDonors() {
               placeholder="Search by City, District, Area, or Donor Name..."
               value={searchLocation}
               onChange={(e) => setSearchLocation(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-full border border-slate-200 dark:border-brand-darkBorder bg-slate-50 dark:bg-brand-darkBg text-sm focus:ring-2 focus:ring-brand-red outline-none"
+              className="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none"
             />
           </div>
 
           <div className="flex items-center gap-2 w-full md:w-auto">
             <button
               type="submit"
-              className="flex-1 md:flex-initial px-6 sm:px-8 py-3 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark shadow-md shadow-brand-red/20 transition-all text-center"
+              className="flex-1 md:flex-initial px-6 sm:px-8 py-3 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 shadow-xs transition-all text-center"
             >
               Search Donors
             </button>
@@ -115,7 +115,7 @@ export default function FindDonors() {
             <button
               type="button"
               onClick={handleResetFilters}
-              className="px-4 py-3 rounded-full border border-slate-200 dark:border-brand-darkBorder text-slate-500 hover:text-brand-red hover:bg-brand-light transition-all flex items-center justify-center gap-1.5 text-xs font-bold"
+              className="px-4 py-3 rounded-xl border border-slate-200 text-slate-600 hover:text-brand-red hover:bg-slate-50 transition-all flex items-center justify-center gap-1.5 text-xs font-bold"
               title="Reset Filters"
             >
               <RotateCcw className="w-4 h-4" />
@@ -125,7 +125,7 @@ export default function FindDonors() {
         </form>
 
         {/* Blood Group Pills & Availability Switch */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pt-4 border-t border-slate-100">
           
           <div className="flex items-center gap-2 overflow-x-auto w-full pb-2 lg:pb-0 scrollbar-none">
             <span className="text-xs font-bold text-slate-400 shrink-0 mr-1 flex items-center gap-1">
@@ -141,10 +141,10 @@ export default function FindDonors() {
                     setSelectedGroup(bg);
                     setPage(1);
                   }}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 ${
                     active
-                      ? 'bg-brand-red text-white shadow-md shadow-brand-red/25'
-                      : 'bg-slate-100 dark:bg-brand-darkBorder/40 text-slate-600 dark:text-slate-300 hover:bg-brand-light hover:text-brand-red'
+                      ? 'bg-brand-red text-white shadow-xs font-bold'
+                      : 'bg-slate-50 border border-slate-200 text-slate-700 hover:border-red-200 hover:bg-white'
                   }`}
                 >
                   {bg}
@@ -154,7 +154,7 @@ export default function FindDonors() {
           </div>
 
           {/* Toggle Available Only */}
-          <label className="flex items-center gap-2 cursor-pointer shrink-0 text-xs font-bold text-slate-700 dark:text-slate-300 select-none">
+          <label className="flex items-center gap-2 cursor-pointer shrink-0 text-xs font-bold text-slate-700 select-none">
             <input
               type="checkbox"
               checked={onlyAvailable}
@@ -180,11 +180,11 @@ export default function FindDonors() {
       {loading ? (
         <LoadingSkeleton count={6} />
       ) : donors.length === 0 ? (
-        <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-12 text-center border border-brand-light dark:border-brand-darkBorder space-y-3">
-          <div className="w-16 h-16 rounded-full bg-brand-light text-brand-red flex items-center justify-center mx-auto text-2xl">
+        <div className="bg-white rounded-2xl p-12 text-center border border-slate-200 shadow-xs space-y-3">
+          <div className="w-16 h-16 rounded-xl bg-red-50 border border-red-200 text-brand-red flex items-center justify-center mx-auto text-2xl">
             🩸
           </div>
-          <h3 className="text-lg font-black text-slate-800 dark:text-white">
+          <h3 className="text-lg font-bold text-slate-800">
             No Donors Found
           </h3>
           <p className="text-xs text-slate-500 max-w-md mx-auto">
@@ -192,7 +192,7 @@ export default function FindDonors() {
           </p>
           <button
             onClick={handleResetFilters}
-            className="px-6 py-2.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark transition-all mt-2"
+            className="px-6 py-2.5 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 transition-all mt-2 shadow-xs"
           >
             Clear All Filters
           </button>
@@ -215,17 +215,17 @@ export default function FindDonors() {
           <button
             onClick={() => setPage(p => Math.max(1, p - 1))}
             disabled={page === 1}
-            className="px-4 py-2 rounded-full border border-slate-200 dark:border-brand-darkBorder text-xs font-bold disabled:opacity-40"
+            className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold disabled:opacity-40 hover:bg-slate-50"
           >
             Previous
           </button>
-          <span className="text-xs font-bold px-3 text-slate-600 dark:text-slate-300">
+          <span className="text-xs font-bold px-3 text-slate-600">
             Page {page} of {totalPages}
           </span>
           <button
             onClick={() => setPage(p => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
-            className="px-4 py-2 rounded-full border border-slate-200 dark:border-brand-darkBorder text-xs font-bold disabled:opacity-40"
+            className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold disabled:opacity-40 hover:bg-slate-50"
           >
             Next
           </button>
@@ -245,4 +245,3 @@ export default function FindDonors() {
     </div>
   );
 }
-

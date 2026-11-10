@@ -150,21 +150,21 @@ export default function UserDashboard() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
       {/* Top Welcome Card */}
-      <div className="bg-gradient-to-r from-brand-dark via-brand-red to-brand-red rounded-3xl p-6 sm:p-8 text-white shadow-xl mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="bg-gradient-to-r from-slate-900 to-brand-red rounded-2xl p-6 sm:p-8 text-white shadow-xl mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-white text-brand-dark font-black text-2xl flex items-center justify-center shadow-md">
+          <div className="w-16 h-16 rounded-xl bg-white text-slate-900 font-extrabold text-2xl flex items-center justify-center shadow-xs">
             {user?.name?.charAt(0).toUpperCase()}
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-black">
+              <h1 className="text-xl sm:text-2xl font-extrabold">
                 Welcome, {user?.name}!
               </h1>
               {user?.isEmailVerified && (
                 <ShieldCheck className="w-5 h-5 text-emerald-400" title="Verified Account" />
               )}
             </div>
-            <p className="text-xs text-white/80 mt-0.5">
+            <p className="text-xs text-slate-200 mt-0.5">
               {user?.email} • {user?.location?.city || 'Location not set'}
             </p>
           </div>
@@ -173,7 +173,7 @@ export default function UserDashboard() {
         {/* Donor Status Pill on Hero */}
         <div className="flex items-center gap-3">
           {isDonor ? (
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20">
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20">
               <div className="text-right">
                 <span className="text-[10px] uppercase font-bold text-white/80 block">
                   Donor Status
@@ -184,7 +184,7 @@ export default function UserDashboard() {
               </div>
               <button
                 onClick={handleToggleAvailability}
-                className="px-3 py-1.5 rounded-xl bg-white text-brand-dark text-xs font-extrabold hover:bg-brand-light transition-all"
+                className="px-3 py-1.5 rounded-lg bg-white text-slate-900 text-xs font-bold hover:bg-slate-100 transition-all shadow-xs"
               >
                 Toggle
               </button>
@@ -192,7 +192,7 @@ export default function UserDashboard() {
           ) : (
             <Link
               to="/donor/register"
-              className="px-6 py-2.5 rounded-full bg-white text-brand-red font-bold text-xs hover:bg-brand-light transition-all shadow-md"
+              className="px-6 py-2.5 rounded-xl bg-white text-brand-red font-bold text-xs hover:bg-slate-50 transition-all shadow-xs"
             >
               Enroll as Donor
             </Link>
@@ -209,10 +209,10 @@ export default function UserDashboard() {
             <button
               key={tab.id}
               onClick={() => setSearchParams({ tab: tab.id })}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold transition-all shrink-0 ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
                 isActive
-                  ? 'bg-brand-red text-white shadow-md shadow-brand-red/20'
-                  : 'bg-white dark:bg-brand-darkCard text-slate-700 dark:text-slate-300 border border-brand-light dark:border-brand-darkBorder hover:bg-brand-light'
+                  ? 'bg-brand-red text-white shadow-xs'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -234,7 +234,7 @@ export default function UserDashboard() {
         
         {/* Left Navigation Sidebar (Desktop only) */}
         <div className="hidden lg:block lg:col-span-3 space-y-2">
-          <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-3 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-1">
+          <div className="bg-white rounded-2xl p-3 border border-slate-200 shadow-xs space-y-1">
             {sidebarTabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -242,10 +242,10 @@ export default function UserDashboard() {
                 <button
                   key={tab.id}
                   onClick={() => setSearchParams({ tab: tab.id })}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
+                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all ${
                     isActive
-                      ? 'bg-brand-red text-white shadow-md shadow-brand-red/20'
-                      : 'text-slate-600 dark:text-slate-300 hover:bg-brand-light/60 dark:hover:bg-brand-darkBorder/40'
+                      ? 'bg-brand-red text-white shadow-xs'
+                      : 'text-slate-600 hover:bg-slate-50'
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -270,7 +270,7 @@ export default function UserDashboard() {
               setSearchParams({ tab: 'donations' });
               setIsScheduling(true);
             }}
-            className="w-full py-3.5 px-4 rounded-2xl bg-brand-light/70 dark:bg-brand-red/10 border border-brand-soft/40 text-brand-dark dark:text-brand-soft hover:bg-brand-light text-xs font-bold flex items-center justify-center gap-2 transition-all"
+            className="w-full py-3.5 px-4 rounded-xl bg-red-50 border border-red-200 text-brand-red hover:bg-red-100/60 text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs"
           >
             <PlusCircle className="w-4 h-4 text-brand-red" />
             <span>Schedule Donation</span>
@@ -313,18 +313,18 @@ export default function UserDashboard() {
               </div>
 
               {/* Eligibility Alert Card */}
-              <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white ${
-                    eligibility.eligible ? 'bg-emerald-500' : 'bg-amber-500'
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white ${
+                    eligibility.eligible ? 'bg-emerald-600' : 'bg-amber-500'
                   }`}>
                     {eligibility.eligible ? <CheckCircle2 className="w-6 h-6" /> : <Clock className="w-6 h-6" />}
                   </div>
                   <div>
-                    <h4 className="font-extrabold text-sm sm:text-base text-slate-800 dark:text-white">
+                    <h4 className="font-bold text-sm sm:text-base text-slate-900">
                       {eligibility.eligible ? 'You Are Eligible to Donate Blood!' : `Next Eligible in ${eligibility.daysLeft} Days`}
                     </h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    <p className="text-xs text-slate-500 mt-0.5">
                       {eligibility.eligible
                         ? '3+ months elapsed since last donation. Help save lives today.'
                         : 'Standard 90-day recovery interval for voluntary blood donation.'}
@@ -338,7 +338,7 @@ export default function UserDashboard() {
                       setSearchParams({ tab: 'donations' });
                       setIsScheduling(true);
                     }}
-                    className="px-5 py-2.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark transition-all shrink-0"
+                    className="px-5 py-2.5 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 transition-all shrink-0 shadow-xs"
                   >
                     Schedule Appointment
                   </button>
@@ -349,9 +349,9 @@ export default function UserDashboard() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* Recent Donations */}
-                <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm">
+                <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                    <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2">
                       <Droplet className="w-4 h-4 text-brand-red" />
                       Recent Donations
                     </h3>
@@ -372,22 +372,22 @@ export default function UserDashboard() {
                       {donations.slice(0, 3).map((d) => (
                         <div
                           key={d._id}
-                          className="p-3 rounded-2xl bg-brand-light/30 dark:bg-brand-darkBorder/20 flex items-center justify-between text-xs"
+                          className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs"
                         >
                           <div>
-                            <span className="font-bold text-slate-800 dark:text-white block">
+                            <span className="font-bold text-slate-800 block">
                               {d.hospitalName}
                             </span>
-                            <span className="text-[11px] text-slate-400">
+                            <span className="text-[11px] text-slate-500">
                               {new Date(d.donationDate).toLocaleDateString()} • {d.donationType}
                             </span>
                           </div>
                           <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
                             d.status === 'Completed'
-                              ? 'bg-emerald-100 text-emerald-700'
+                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                               : d.status === 'Scheduled'
-                              ? 'bg-amber-100 text-amber-700'
-                              : 'bg-slate-100 text-slate-700'
+                              ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                              : 'bg-slate-100 text-slate-700 border border-slate-200'
                           }`}>
                             {d.status}
                           </span>
@@ -398,9 +398,9 @@ export default function UserDashboard() {
                 </div>
 
                 {/* Recent Requests */}
-                <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm">
+                <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                    <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 text-brand-red" />
                       My Blood Requests
                     </h3>
@@ -421,17 +421,17 @@ export default function UserDashboard() {
                       {myRequests.slice(0, 3).map((r) => (
                         <div
                           key={r._id}
-                          className="p-3 rounded-2xl bg-brand-light/30 dark:bg-brand-darkBorder/20 flex items-center justify-between text-xs"
+                          className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs"
                         >
                           <div>
-                            <span className="font-bold text-slate-800 dark:text-white block">
+                            <span className="font-bold text-slate-800 block">
                               {r.patientName} ({r.bloodGroup})
                             </span>
-                            <span className="text-[11px] text-slate-400">
+                            <span className="text-[11px] text-slate-500">
                               {r.hospitalName} • {r.priority}
                             </span>
                           </div>
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-red/10 text-brand-red">
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-red-50 text-brand-red border border-red-200">
                             {r.status}
                           </span>
                         </div>
@@ -447,10 +447,10 @@ export default function UserDashboard() {
 
           {/* TAB 2: MY DONOR PROFILE */}
           {activeTab === 'donor' && (
-            <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-6 animate-in fade-in">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6 animate-in fade-in">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white">
+                  <h3 className="text-xl font-bold text-slate-900">
                     My Donor Profile
                   </h3>
                   <p className="text-xs text-slate-500">
@@ -461,10 +461,10 @@ export default function UserDashboard() {
                 {isDonor && (
                   <button
                     onClick={handleToggleAvailability}
-                    className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-xs ${
                       donorProfile?.isAvailable
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-slate-200 text-slate-700'
                     }`}
                   >
                     {donorProfile?.isAvailable ? '🟢 Available' : 'Paused'}
@@ -474,10 +474,10 @@ export default function UserDashboard() {
 
               {!isDonor ? (
                 <div className="text-center py-10 space-y-3">
-                  <div className="w-16 h-16 rounded-full bg-brand-light text-brand-red flex items-center justify-center mx-auto text-2xl">
+                  <div className="w-16 h-16 rounded-xl bg-red-50 border border-red-200 text-brand-red flex items-center justify-center mx-auto text-2xl">
                     🩸
                   </div>
-                  <h4 className="text-base font-bold text-slate-800 dark:text-white">
+                  <h4 className="text-base font-bold text-slate-800">
                     You Have Not Enrolled as a Donor Yet
                   </h4>
                   <p className="text-xs text-slate-500 max-w-sm mx-auto">
@@ -485,7 +485,7 @@ export default function UserDashboard() {
                   </p>
                   <Link
                     to="/donor/register"
-                    className="inline-block px-6 py-2.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark transition-all mt-2"
+                    className="inline-block px-6 py-2.5 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 transition-all mt-2 shadow-xs"
                   >
                     Enroll Now
                   </Link>
@@ -494,29 +494,29 @@ export default function UserDashboard() {
                 <div className="space-y-6">
                   {/* Summary Grid */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div className="p-4 rounded-2xl bg-brand-light/30 dark:bg-brand-darkBorder/30">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
                       <span className="text-[10px] font-bold text-slate-400 uppercase">Blood Group</span>
                       <p className="text-2xl font-black text-brand-red">{donorProfile.bloodGroup}</p>
                     </div>
-                    <div className="p-4 rounded-2xl bg-brand-light/30 dark:bg-brand-darkBorder/30">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
                       <span className="text-[10px] font-bold text-slate-400 uppercase">Total Completed</span>
-                      <p className="text-2xl font-black text-slate-800 dark:text-white">{donorProfile.totalDonations}</p>
+                      <p className="text-2xl font-black text-slate-900">{donorProfile.totalDonations}</p>
                     </div>
-                    <div className="p-4 rounded-2xl bg-brand-light/30 dark:bg-brand-darkBorder/30">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
                       <span className="text-[10px] font-bold text-slate-400 uppercase">City</span>
-                      <p className="text-sm font-bold text-slate-800 dark:text-white mt-1 truncate">{donorProfile.city}</p>
+                      <p className="text-sm font-bold text-slate-900 mt-1 truncate">{donorProfile.city}</p>
                     </div>
-                    <div className="p-4 rounded-2xl bg-brand-light/30 dark:bg-brand-darkBorder/30">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
                       <span className="text-[10px] font-bold text-slate-400 uppercase">Contact Method</span>
-                      <p className="text-xs font-bold text-slate-800 dark:text-white mt-1">{donorProfile.preferredContact}</p>
+                      <p className="text-xs font-bold text-slate-900 mt-1">{donorProfile.preferredContact}</p>
                     </div>
                   </div>
 
                   {/* Bio */}
                   {donorProfile.bio && (
-                    <div className="p-4 rounded-2xl bg-slate-50 dark:bg-brand-darkBg border border-slate-100 dark:border-brand-darkBorder">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
                       <span className="text-[10px] font-bold text-slate-400 uppercase block mb-1">Donor Bio</span>
-                      <p className="text-xs italic text-slate-600 dark:text-slate-300">"{donorProfile.bio}"</p>
+                      <p className="text-xs italic text-slate-600">"{donorProfile.bio}"</p>
                     </div>
                   )}
 
@@ -531,10 +531,10 @@ export default function UserDashboard() {
 
           {/* TAB 3: MY DONATIONS */}
           {activeTab === 'donations' && (
-            <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-6 animate-in fade-in">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6 animate-in fade-in">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white">
+                  <h3 className="text-xl font-bold text-slate-900">
                     My Donation Appointments & History
                   </h3>
                   <p className="text-xs text-slate-500">
@@ -544,7 +544,7 @@ export default function UserDashboard() {
 
                 <button
                   onClick={() => setIsScheduling(!isScheduling)}
-                  className="px-5 py-2.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark transition-all flex items-center gap-1.5"
+                  className="px-5 py-2.5 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 transition-all flex items-center gap-1.5 shadow-xs"
                 >
                   <PlusCircle className="w-4 h-4" />
                   <span>{isScheduling ? 'Cancel' : 'Schedule Donation'}</span>
@@ -553,14 +553,14 @@ export default function UserDashboard() {
 
               {/* Schedule Form (Toggled) */}
               {isScheduling && (
-                <form onSubmit={handleScheduleSubmit} className="p-5 rounded-2xl bg-brand-light/30 dark:bg-brand-darkBorder/30 border border-brand-soft/40 space-y-4">
-                  <h4 className="font-extrabold text-sm text-brand-dark dark:text-white">
+                <form onSubmit={handleScheduleSubmit} className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
+                  <h4 className="font-bold text-sm text-slate-900">
                     Schedule Blood Donation Appointment
                   </h4>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                         Donation Date *
                       </label>
                       <input
@@ -568,12 +568,12 @@ export default function UserDashboard() {
                         required
                         value={scheduleData.donationDate}
                         onChange={(e) => setScheduleData({ ...scheduleData, donationDate: e.target.value })}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg text-xs outline-none"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                         Hospital / Center *
                       </label>
                       <input
@@ -582,12 +582,12 @@ export default function UserDashboard() {
                         placeholder="e.g. Apollo Blood Bank"
                         value={scheduleData.hospitalName}
                         onChange={(e) => setScheduleData({ ...scheduleData, hospitalName: e.target.value })}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg text-xs outline-none"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                         Location / City *
                       </label>
                       <input
@@ -596,7 +596,7 @@ export default function UserDashboard() {
                         placeholder="e.g. Chennai"
                         value={scheduleData.donationLocation}
                         onChange={(e) => setScheduleData({ ...scheduleData, donationLocation: e.target.value })}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg text-xs outline-none"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-900 text-xs outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red"
                       />
                     </div>
                   </div>
@@ -605,13 +605,13 @@ export default function UserDashboard() {
                     <button
                       type="button"
                       onClick={() => setIsScheduling(false)}
-                      className="px-4 py-2 rounded-full text-xs font-bold text-slate-500 hover:bg-slate-100"
+                      className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="px-6 py-2 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark transition-all"
+                      className="px-6 py-2 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 transition-all shadow-xs"
                     >
                       Confirm Appointment
                     </button>
@@ -629,11 +629,11 @@ export default function UserDashboard() {
                   {donations.map((d) => (
                     <div
                       key={d._id}
-                      className="p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-brand-darkBg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                      className="p-4 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs"
                     >
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-extrabold text-sm text-slate-900 dark:text-white">
+                          <span className="font-bold text-sm text-slate-900">
                             {d.hospitalName}
                           </span>
                           <span className="font-mono text-[10px] text-slate-400">
@@ -644,7 +644,7 @@ export default function UserDashboard() {
                           {new Date(d.donationDate).toLocaleDateString()} • {d.donationLocation} • {d.donationType} ({d.units} Unit)
                         </p>
                         {d.certificateNumber && (
-                          <div className="inline-flex items-center gap-1 mt-1 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                          <div className="inline-flex items-center gap-1 mt-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
                             <Award className="w-3.5 h-3.5" />
                             <span>Certificate #{d.certificateNumber}</span>
                           </div>
@@ -654,10 +654,10 @@ export default function UserDashboard() {
                       <div className="flex items-center gap-3 self-end sm:self-center">
                         <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                           d.status === 'Completed'
-                            ? 'bg-emerald-100 text-emerald-700'
+                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                             : d.status === 'Scheduled'
-                            ? 'bg-amber-100 text-amber-700'
-                            : 'bg-slate-100 text-slate-700'
+                            ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                            : 'bg-slate-100 text-slate-700 border border-slate-200'
                         }`}>
                           {d.status}
                         </span>
@@ -671,10 +671,10 @@ export default function UserDashboard() {
 
           {/* TAB 4: MY BLOOD REQUESTS */}
           {activeTab === 'requests' && (
-            <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-6 animate-in fade-in">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6 animate-in fade-in">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white">
+                  <h3 className="text-xl font-bold text-slate-900">
                     My Submitted Blood Requests
                   </h3>
                   <p className="text-xs text-slate-500">
@@ -684,7 +684,7 @@ export default function UserDashboard() {
 
                 <Link
                   to="/requests/create"
-                  className="px-5 py-2.5 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark transition-all flex items-center gap-1.5"
+                  className="px-5 py-2.5 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-red-700 transition-all flex items-center gap-1.5 shadow-xs"
                 >
                   <PlusCircle className="w-4 h-4" />
                   <span>New Request</span>
@@ -700,15 +700,15 @@ export default function UserDashboard() {
                   {myRequests.map((req) => (
                     <div
                       key={req._id}
-                      className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-brand-darkBg space-y-3"
+                      className="p-5 rounded-xl border border-slate-200 bg-white space-y-3 shadow-xs"
                     >
                       <div className="flex items-start justify-between">
                         <div>
                           <div className="flex items-center gap-2">
-                            <h4 className="font-extrabold text-base text-slate-900 dark:text-white">
+                            <h4 className="font-bold text-base text-slate-900">
                               {req.patientName}
                             </h4>
-                            <span className="px-2 py-0.5 rounded-md bg-brand-light text-brand-red font-black text-xs">
+                            <span className="px-2 py-0.5 rounded-md bg-red-50 text-brand-red font-black text-xs border border-red-200">
                               {req.bloodGroup}
                             </span>
                             <span className="font-mono text-xs text-slate-400">
@@ -720,14 +720,14 @@ export default function UserDashboard() {
                           </p>
                         </div>
 
-                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-red/10 text-brand-red">
+                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-50 text-brand-red border border-red-200">
                           {req.status}
                         </span>
                       </div>
 
                       {/* Matched Donors Pill Counter */}
-                      <div className="p-3 bg-brand-light/30 dark:bg-brand-darkBorder/20 rounded-xl flex items-center justify-between text-xs">
-                        <span className="font-bold text-slate-700 dark:text-slate-300">
+                      <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs">
+                        <span className="font-bold text-slate-700">
                           Matched Donors: {req.matchedDonors?.length || 0}
                         </span>
                         <Link
@@ -746,9 +746,9 @@ export default function UserDashboard() {
 
           {/* TAB 5: CONTACT REQUESTS */}
           {activeTab === 'contact-requests' && (
-            <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-6 animate-in fade-in">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6 animate-in fade-in">
               <div>
-                <h3 className="text-xl font-black text-slate-900 dark:text-white">
+                <h3 className="text-xl font-bold text-slate-900">
                   Direct Contact Requests
                 </h3>
                 <p className="text-xs text-slate-500">
@@ -758,30 +758,30 @@ export default function UserDashboard() {
 
               {/* Incoming Inquiries */}
               <div className="space-y-4">
-                <h4 className="font-extrabold text-sm text-slate-800 dark:text-white">
+                <h4 className="font-bold text-sm text-slate-900">
                   Incoming Inquiries for Your Donor Profile ({contactRequests.incoming.length})
                 </h4>
 
                 {contactRequests.incoming.length === 0 ? (
-                  <div className="p-8 text-center text-xs text-slate-400 rounded-2xl bg-slate-50 dark:bg-brand-darkBorder/20">
+                  <div className="p-8 text-center text-xs text-slate-400 rounded-xl bg-slate-50 border border-slate-200">
                     No incoming contact requests.
                   </div>
                 ) : (
                   contactRequests.incoming.map((cr) => (
                     <div
                       key={cr._id}
-                      className="p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-brand-darkBg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                      className="p-4 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-extrabold text-sm text-slate-900 dark:text-white">
+                          <span className="font-bold text-sm text-slate-900">
                             From: {cr.requesterName}
                           </span>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-brand-red">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-red-50 text-brand-red border border-red-200">
                             {cr.urgency}
                           </span>
                         </div>
-                        <p className="text-xs text-slate-600 dark:text-slate-300">
+                        <p className="text-xs text-slate-600">
                           Patient: <strong>{cr.patientName}</strong> • {cr.hospitalName}
                         </p>
                         <p className="text-xs italic text-slate-500">"{cr.message}"</p>
@@ -791,14 +791,14 @@ export default function UserDashboard() {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleContactRespond(cr._id, 'Accepted')}
-                            className="px-4 py-2 rounded-full bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-all flex items-center gap-1"
+                            className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-all flex items-center gap-1 shadow-xs"
                           >
                             <Check className="w-3.5 h-3.5" />
                             <span>Accept</span>
                           </button>
                           <button
                             onClick={() => handleContactRespond(cr._id, 'Declined')}
-                            className="px-4 py-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold hover:bg-slate-300 transition-all flex items-center gap-1"
+                            className="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition-all flex items-center gap-1 border border-slate-200"
                           >
                             <XCircle className="w-3.5 h-3.5" />
                             <span>Decline</span>
@@ -806,7 +806,9 @@ export default function UserDashboard() {
                         </div>
                       ) : (
                         <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                          cr.status === 'Accepted' ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'
+                          cr.status === 'Accepted'
+                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                            : 'bg-red-50 text-red-700 border border-red-200'
                         }`}>
                           {cr.status}
                         </span>
@@ -817,30 +819,30 @@ export default function UserDashboard() {
               </div>
 
               {/* Outgoing Inquiries */}
-              <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-                <h4 className="font-extrabold text-sm text-slate-800 dark:text-white">
+              <div className="space-y-4 pt-4 border-t border-slate-100">
+                <h4 className="font-bold text-sm text-slate-900">
                   Inquiries Sent by You ({contactRequests.outgoing.length})
                 </h4>
 
                 {contactRequests.outgoing.length === 0 ? (
-                  <div className="p-8 text-center text-xs text-slate-400 rounded-2xl bg-slate-50 dark:bg-brand-darkBorder/20">
+                  <div className="p-8 text-center text-xs text-slate-400 rounded-xl bg-slate-50 border border-slate-200">
                     You haven't requested contact with any donors yet.
                   </div>
                 ) : (
                   contactRequests.outgoing.map((cr) => (
                     <div
                       key={cr._id}
-                      className="p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-brand-darkBg flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                      className="p-4 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-xs"
                     >
                       <div>
-                        <span className="font-bold text-slate-800 dark:text-white block">
+                        <span className="font-bold text-slate-900 block">
                           Donor: {cr.donorId?.name || 'Volunteer Donor'} ({cr.donorId?.bloodGroup})
                         </span>
                         <p className="text-slate-500 mt-0.5">
                           Patient: {cr.patientName} • {cr.hospitalName}
                         </p>
                         {cr.status === 'Accepted' && (
-                          <p className="text-emerald-600 font-bold mt-1">
+                          <p className="text-emerald-700 font-bold mt-1">
                             Accepted! Direct Phone: {cr.donorId?.mobileNumber}
                           </p>
                         )}
@@ -848,10 +850,10 @@ export default function UserDashboard() {
 
                       <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                         cr.status === 'Accepted'
-                          ? 'bg-emerald-100 text-emerald-700'
+                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                           : cr.status === 'Pending'
-                          ? 'bg-amber-100 text-amber-700'
-                          : 'bg-slate-100 text-slate-700'
+                          ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                          : 'bg-slate-100 text-slate-700 border border-slate-200'
                       }`}>
                         {cr.status}
                       </span>
@@ -864,10 +866,10 @@ export default function UserDashboard() {
 
           {/* TAB 6: MY CAMPS */}
           {activeTab === 'camps' && (
-            <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-sm space-y-6 animate-in fade-in">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6 animate-in fade-in">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white">
+                  <h3 className="text-xl font-bold text-slate-900">
                     My Registered Donation Camps
                   </h3>
                   <p className="text-xs text-slate-500">
@@ -891,10 +893,10 @@ export default function UserDashboard() {
                   {myCamps.map((reg) => (
                     <div
                       key={reg._id}
-                      className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-brand-darkBg flex items-center justify-between gap-4"
+                      className="p-5 rounded-xl border border-slate-200 bg-white flex items-center justify-between gap-4 shadow-xs"
                     >
                       <div>
-                        <h4 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">
+                        <h4 className="font-bold text-sm sm:text-base text-slate-900">
                           {reg.campId?.campName || 'Community Blood Drive'}
                         </h4>
                         <p className="text-xs text-slate-500 mt-0.5">
@@ -902,7 +904,7 @@ export default function UserDashboard() {
                         </p>
                       </div>
 
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                         {reg.status}
                       </span>
                     </div>
@@ -919,4 +921,3 @@ export default function UserDashboard() {
     </div>
   );
 }
-
