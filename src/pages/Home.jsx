@@ -15,13 +15,19 @@ import {
   CheckCircle,
   ChevronDown,
   PhoneCall,
-  Heart
+  Heart,
+  Star,
+  Quote,
+  Mail,
+  MapPin,
+  Send
 } from 'lucide-react';
 import BloodGroupMatrix from '../components/BloodGroupMatrix';
 import BloodRequestCard from '../components/BloodRequestCard';
 import CampCard from '../components/CampCard';
 import { bloodRequestService } from '../services/bloodRequestService';
 import { campService } from '../services/campService';
+import { contactService } from '../services/contactService';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
@@ -70,6 +76,61 @@ export default function Home() {
       toast.error(err.response?.data?.message || 'Could not register for camp.');
     }
   };
+
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [submittingContact, setSubmittingContact] = useState(false);
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    setSubmittingContact(true);
+    try {
+      const res = await contactService.submitInquiry(contactForm);
+      if (res.success) {
+        toast.success(res.message || 'Thank you! Your message has been received.');
+        setContactForm({ name: '', email: '', phone: '', subject: '', message: '' });
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Could not send message. Please try again.');
+    } finally {
+      setSubmittingContact(false);
+    }
+  };
+
+  const successStories = [
+    {
+      name: 'Priya Narayanan',
+      role: 'Recipient Mother',
+      bloodGroup: 'O-',
+      city: 'Chennai',
+      quote: 'When my 6-year-old son required 2 units of rare O- blood for emergency dengue treatment at midnight, Blood Hero connected us with an eligible voluntary donor in just 22 minutes. You literally saved my child’s life.',
+      date: 'March 2026',
+      rating: 5
+    },
+    {
+      name: 'Karthik Sundaram',
+      role: 'Voluntary Donor (18x)',
+      bloodGroup: 'B+',
+      city: 'Coimbatore',
+      quote: 'I love how Blood Hero protects donor privacy. I receive alerts only when my specific blood type is needed nearby, and the appointment booking takes seconds. Donating blood is the easiest way to be a real-life hero.',
+      date: 'February 2026',
+      rating: 5
+    },
+    {
+      name: 'Dr. Aruna Sengupta',
+      role: 'Senior Hematologist',
+      bloodGroup: 'AB+',
+      city: 'Bangalore',
+      quote: 'Having voluntary donors coordinate through verified real-time alerts bridges the critical golden hour for accident trauma cases. Blood Hero has become an indispensable network for healthcare providers.',
+      date: 'January 2026',
+      rating: 5
+    }
+  ];
 
   const faqs = [
     {
@@ -455,7 +516,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. FREQUENTLY ASKED QUESTIONS */}
+      {/* 7. SUCCESS STORIES & TESTIMONIALS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-xl mx-auto mb-12">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-brand-light dark:bg-brand-red/20 px-3 py-1 rounded-full">
+            Real Impact
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black text-brand-dark dark:text-white mt-2">
+            Stories That Warm the Heart
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+            Real testimonies from patients whose lives were saved and donors who made it possible.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {successStories.map((story, idx) => (
+            <div
+              key={idx}
+              className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-8 border border-brand-light dark:border-brand-darkBorder shadow-lg hover:shadow-xl transition-all duration-300 relative flex flex-col justify-between group hover:-translate-y-1"
+            >
+              <div>
+                {/* 5-Star Rating & Blood Group Pill */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-1 text-amber-400">
+                    {[...Array(story.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded-full bg-brand-light dark:bg-brand-red/20 text-brand-red font-black text-xs">
+                    {story.bloodGroup}
+                  </span>
+                </div>
+
+                {/* Quote Text */}
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic mb-6">
+                  "{story.quote}"
+                </p>
+              </div>
+
+              {/* Author Info */}
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <div>
+                  <h4 className="font-extrabold text-sm text-slate-900 dark:text-white">
+                    {story.name}
+                  </h4>
+                  <p className="text-[11px] font-semibold text-slate-400">
+                    {story.role} • {story.city}
+                  </p>
+                </div>
+                <span className="text-[10px] text-slate-400 font-medium">
+                  {story.date}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 8. FREQUENTLY ASKED QUESTIONS */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-brand-light dark:bg-brand-red/20 px-3 py-1 rounded-full">
@@ -496,7 +615,170 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. EMERGENCY CALLOUT BANNER */}
+      {/* 9. CONTACT US & VOLUNTEER INQUIRY SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 sm:p-12 border border-brand-light dark:border-brand-darkBorder shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Left Column: Contact Coordinates */}
+            <div className="lg:col-span-5 space-y-6">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-brand-light dark:bg-brand-red/20 px-3 py-1 rounded-full">
+                  We're Here For You
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-brand-dark dark:text-white mt-2">
+                  Have Questions or Want to Organize a Camp?
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                  Reach out to the Blood Hero volunteer coordination team. Whether you need immediate transfusion guidance, want to register as an institutional partner, or host a corporate blood drive, we are ready to assist.
+                </p>
+              </div>
+
+              <div className="space-y-4 pt-2">
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-brand-light/50 dark:bg-brand-darkBorder/30 border border-brand-soft/20">
+                  <div className="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <PhoneCall className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                      Emergency Hotline (24/7)
+                    </span>
+                    <span className="text-sm font-extrabold text-slate-900 dark:text-white">
+                      +91 94440 12345 / 1800-HERO
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-brand-light/50 dark:bg-brand-darkBorder/30 border border-brand-soft/20">
+                  <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Mail className="w-5 h-5 text-brand-soft" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                      Official Support Email
+                    </span>
+                    <span className="text-sm font-extrabold text-slate-900 dark:text-white">
+                      support@bloodhero.org
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-brand-light/50 dark:bg-brand-darkBorder/30 border border-brand-soft/20">
+                  <div className="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                      Coordination Headquarters
+                    </span>
+                    <span className="text-sm font-extrabold text-slate-900 dark:text-white">
+                      Central Healthcare Hub, Anna Salai, Chennai, India
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Interactive Contact Form */}
+            <div className="lg:col-span-7 bg-brand-light/30 dark:bg-brand-darkBorder/20 p-6 sm:p-8 rounded-3xl border border-brand-soft/30">
+              <h3 className="font-extrabold text-lg text-slate-900 dark:text-white mb-1">
+                Send Us a Direct Message
+              </h3>
+              <p className="text-xs text-slate-500 mb-6">
+                Our support desk usually responds within 15 to 30 minutes.
+              </p>
+
+              <form onSubmit={handleContactSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                      Your Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Rahul Sharma"
+                      value={contactForm.name}
+                      onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg text-xs focus:ring-2 focus:ring-brand-red outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="e.g. rahul@example.com"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg text-xs focus:ring-2 focus:ring-brand-red outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                      Phone Number (Optional)
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="e.g. +91 98401 23456"
+                      value={contactForm.phone}
+                      onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg text-xs focus:ring-2 focus:ring-brand-red outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Blood Camp Inquiry / Hospital Support"
+                      value={contactForm.subject}
+                      onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg text-xs focus:ring-2 focus:ring-brand-red outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                    Your Message *
+                  </label>
+                  <textarea
+                    required
+                    rows={4}
+                    placeholder="How can we assist you today? Please provide any relevant details..."
+                    value={contactForm.message}
+                    onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-brand-darkBorder bg-white dark:bg-brand-darkBg text-xs focus:ring-2 focus:ring-brand-red outline-none"
+                  />
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={submittingContact}
+                    className="w-full sm:w-auto px-8 py-3 rounded-full bg-brand-red text-white text-xs font-bold hover:bg-brand-dark transition-all shadow-md shadow-brand-red/25 flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>{submittingContact ? 'Sending Message...' : 'Send Message'}</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 10. EMERGENCY CALLOUT BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-brand-light/70 dark:bg-brand-darkBorder/30 rounded-3xl p-8 sm:p-10 border border-brand-soft/40 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div>

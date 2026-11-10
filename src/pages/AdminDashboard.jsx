@@ -181,7 +181,7 @@ export default function AdminDashboard() {
         {/* CSV Export Dropdown / Buttons */}
         <div className="grid grid-cols-3 sm:flex items-center gap-2 w-full sm:w-auto">
           <a
-            href="/api/admin/export/donors"
+            href={adminService.exportCsvUrl('donors')}
             download="blood_donors.csv"
             className="px-2.5 sm:px-4 py-2.5 rounded-full bg-white text-brand-dark hover:bg-brand-light text-[11px] sm:text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 text-center"
           >
@@ -190,7 +190,7 @@ export default function AdminDashboard() {
             <span className="sm:hidden">Donors</span>
           </a>
           <a
-            href="/api/admin/export/requests"
+            href={adminService.exportCsvUrl('requests')}
             download="blood_requests.csv"
             className="px-2.5 sm:px-4 py-2.5 rounded-full bg-white text-brand-dark hover:bg-brand-light text-[11px] sm:text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 text-center"
           >
@@ -199,7 +199,7 @@ export default function AdminDashboard() {
             <span className="sm:hidden">Requests</span>
           </a>
           <a
-            href="/api/admin/export/donations"
+            href={adminService.exportCsvUrl('donations')}
             download="donations.csv"
             className="px-2.5 sm:px-4 py-2.5 rounded-full bg-white text-brand-dark hover:bg-brand-light text-[11px] sm:text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 text-center"
           >

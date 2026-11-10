@@ -67,7 +67,8 @@ export const adminService = {
 
   exportCsvUrl: (type) => {
     const token = localStorage.getItem('token');
-    return `/api/admin/export/${type}?token=${token}`;
+    const baseUrl = import.meta.env.VITE_API_URL || '/api';
+    return `${baseUrl}/admin/export/${type}?token=${token || ''}`;
   }
 };
 

@@ -1,6 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Droplet, PhoneCall, ShieldAlert, Heart, Mail, MapPin, ExternalLink, Globe } from 'lucide-react';
+import {
+  Droplet,
+  PhoneCall,
+  ShieldAlert,
+  Heart,
+  Mail,
+  MapPin,
+  ExternalLink,
+  Globe,
+  Twitter,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Github
+} from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -34,6 +48,60 @@ export default function Footer() {
                 <span className="text-sm font-extrabold text-brand-dark dark:text-white">
                   +91 94440 12345 / 1800-HERO
                 </span>
+              </div>
+            </div>
+
+            {/* Social Media Links */}
+            <div className="pt-2">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2">
+                Follow Our Mission
+              </span>
+              <div className="flex items-center gap-2">
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter / X"
+                  className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-brand-darkBorder/40 hover:bg-brand-red hover:text-white transition-all flex items-center justify-center text-slate-500 shadow-sm"
+                >
+                  <Twitter className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-brand-darkBorder/40 hover:bg-brand-red hover:text-white transition-all flex items-center justify-center text-slate-500 shadow-sm"
+                >
+                  <Facebook className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-brand-darkBorder/40 hover:bg-brand-red hover:text-white transition-all flex items-center justify-center text-slate-500 shadow-sm"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-brand-darkBorder/40 hover:bg-brand-red hover:text-white transition-all flex items-center justify-center text-slate-500 shadow-sm"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://github.com/Shahid-cs22"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-brand-darkBorder/40 hover:bg-brand-red hover:text-white transition-all flex items-center justify-center text-slate-500 shadow-sm"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </div>

@@ -73,9 +73,13 @@ Inspired by modern humanist UI and reference mobile designs:
    ```bash
    cp .env.example .env
    ```
-   Edit `.env` if your backend runs on a different port:
+   For local development (or leave default to use Vite proxy):
    ```env
    VITE_API_URL=http://localhost:5000/api
+   ```
+   For live production deployment (Render backend):
+   ```env
+   VITE_API_URL=https://blood-donation-backend-60mr.onrender.com/api
    ```
 
 4. **Start Development Server:**
@@ -115,3 +119,4 @@ frontend/
 ## 🛡️ License
 
 This project is licensed under the [MIT License](LICENSE).
+
