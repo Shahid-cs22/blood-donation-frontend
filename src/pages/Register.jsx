@@ -62,7 +62,7 @@ export default function Register() {
       const res = await authService.register(payload);
       if (res.success) {
         toast.success(res.message);
-        navigate('/verify-otp', { state: { email: formData.email } });
+        navigate('/verify-otp', { state: { email: formData.email, devOtp: res.devOtp } });
       }
     } catch (err) {
       toast.error(err.response?.data?.message || 'Registration failed. Please try again.');

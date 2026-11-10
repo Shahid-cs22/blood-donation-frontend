@@ -21,7 +21,7 @@ export default function ForgotPassword() {
       const res = await authService.forgotPassword(email);
       if (res.success) {
         toast.success(res.message);
-        navigate('/reset-password', { state: { email } });
+        navigate('/reset-password', { state: { email, devOtp: res.devOtp } });
       }
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to request password reset code.');

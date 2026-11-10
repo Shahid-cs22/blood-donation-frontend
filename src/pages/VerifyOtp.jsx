@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { ShieldCheck, ArrowRight } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import confetti from 'canvas-confetti';
 import { authService } from '../services/authService';
@@ -12,7 +12,8 @@ export default function VerifyOtp() {
   const { loginUser } = useAuth();
 
   const [email, setEmail] = useState(location.state?.email || '');
-  const [otp, setOtp] = useState('');
+  const [devOtp, setDevOtp] = useState(location.state?.devOtp || '');
+  const [otp, setOtp] = useState(location.state?.devOtp || '');
   const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
   const [timer, setTimer] = useState(60);
@@ -56,6 +57,10 @@ export default function VerifyOtp() {
       const res = await authService.resendOtp(email, 'VERIFY_EMAIL');
       if (res.success) {
         toast.success(res.message);
+        if (res.devOtp) {
+          setDevOtp(res.devOtp);
+          setOtp(res.devOtp);
+        }
         setTimer(60);
       }
     } catch (err) {
@@ -85,6 +90,28 @@ export default function VerifyOtp() {
             {email || 'your registered email'}
           </p>
         </div>
+
+        {/* Development / Unconfigured SMTP Assistant Card */}
+        {devOtp && (
+          <div className="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl p-3.5 text-xs text-left shadow-xs">
+            <div className="flex items-center justify-between">
+              <span className="font-bold flex items-center gap-1.5 text-amber-800">
+                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                <span>Testing Mode (SMTP Unconfigured)</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => setOtp(devOtp)}
+                className="px-2.5 py-1 rounded-lg bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold text-[11px] transition-colors"
+              >
+                Auto-fill {devOtp}
+              </button>
+            </div>
+            <p className="mt-1.5 text-[11px] text-amber-700 leading-relaxed">
+              Your server terminal logged OTP <strong className="font-mono text-amber-900">{devOtp}</strong>. To receive live emails in your real Gmail inbox, configure your Gmail App Password in <code className="bg-amber-100 px-1 py-0.5 rounded font-mono text-[10px]">backend/.env</code>.
+            </p>
+          </div>
+        )}
 
         <form onSubmit={handleVerify} className="space-y-5">
           {!location.state?.email && (
