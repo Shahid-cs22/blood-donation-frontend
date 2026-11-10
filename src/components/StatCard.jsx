@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function StatCard({ label, value, subtext, icon: Icon, color = 'red' }) {
   const colorStyles = {
@@ -10,7 +11,10 @@ export default function StatCard({ label, value, subtext, icon: Icon, color = 'r
   };
 
   return (
-    <div className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm hover:shadow-md transition-shadow">
+    <motion.div
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className="bg-white dark:bg-brand-darkCard rounded-3xl p-6 border border-brand-light dark:border-brand-darkBorder shadow-sm hover:shadow-md transition-shadow"
+    >
       <div className="flex items-center justify-between">
         <div>
           <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
@@ -32,7 +36,7 @@ export default function StatCard({ label, value, subtext, icon: Icon, color = 'r
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
